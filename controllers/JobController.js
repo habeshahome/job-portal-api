@@ -1,19 +1,17 @@
 // importing the model
 const Job = require('../models/Job');
 
+
 const _index = async (req, res, next) => {
     try {
         const response = await Job.find()
-        res.json({
-            response
-        })
+        res.json(response)
     }
     catch (error) {
-        res.json({
-            error
-        })
+        res.json(error)
     }
 }
+
 
 const _create = async (req, res, next) => {
 
@@ -25,32 +23,26 @@ const _create = async (req, res, next) => {
 
     try {
         const response = await job.save()
-        res.json({
-            response
-        })
+        res.json(response)
     }
     catch (error) {
-        res.json({
-            error
-        })
+        res.json(error)
     }
 }
+
 
 const _read = async (req, res, next) => {
     let id = req.params.id
 
     try {
         const response = await Job.findById(id)
-        res.json({
-            response
-        })
+        res.json(response)
     }
     catch (error) {
-        res.json({
-            error
-        })
+        res.json(error)
     }
 }
+
 
 const _update = async (req, res, next) => {
     let id = req.params.id
@@ -63,31 +55,24 @@ const _update = async (req, res, next) => {
 
     try {
         const response = await Job.findByIdAndUpdate(id, { $set: updatedData })
-        res.json({
-            response
-        })
+        res.json(response)
     }
     catch (error) {
-        res.json({
-            error
-        })
+        res.json(error)
     }
 
 }
+
 
 const _delete = async (req, res, next) => {
     let id = req.params.id
 
     try {
         const response = await Job.findByIdAndDelete(id)
-        res.json({
-            response
-        })
+        res.json(response)
     }
     catch (error) {
-        res.json({
-            message: "Delete Failed"
-        })
+        res.json({ message: "Delete Failed" })
     }
 }
 

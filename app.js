@@ -12,7 +12,7 @@ var logger = require('morgan');
 //importing route files
 var indexRouter = require('./routes/index');
 var authRouter = require('./routes/auth');
-//var usersRouter = require('./routes/users');
+var usersRouter = require('./routes/users');
 var adminRouter = require('./routes/admins');
 var menuRouter = require('./routes/menu');
 var jobRouter = require('./routes/jobs');
@@ -35,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //defining routes
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
-//app.use('/users', usersRouter);
+app.use('/users', usersRouter);
 app.use('/admins', adminRouter);
 app.use('/menu', menuRouter)
 app.use('/jobs', jobRouter)

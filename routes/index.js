@@ -6,6 +6,4 @@ router.get('/', function (req, res, next) {
   res.render('index', { title: 'Job Portal API (by Bamlak K)' });
 });
 
-
-
 module.exports = router;

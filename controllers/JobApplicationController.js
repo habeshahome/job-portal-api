@@ -18,14 +18,8 @@ const _index = async (req, res, next) => {
 const _create = async (req, res) => {
 
     let job = new JobApplication({
+        job_id: req.body.job_id,
         user_id: req.body.user_id,
-        job_title: req.body.job_title,
-        company: req.body.company,
-        date_started: req.body.date_started,
-        date_ended: req.body.date_ended,
-        industry: req.body.industry,
-        education: req.body.education,
-        skills: req.body.skills
     })
 
     try {
@@ -46,9 +40,8 @@ const _read = async (req, res) => {
 
     try {
         const response = await JobApplication.find({ user_id: id })
-        res.json({
-            response
-        })
+        res.json(response)
+
     }
     catch (error) {
         res.json({

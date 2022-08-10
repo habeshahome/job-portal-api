@@ -1,51 +1,142 @@
-GET http://localhost:3000/jobs/
+### LIST OF API RESOURCE ENDPOINTS - FOR TESTING ONLY
 
-###
-DELETE http://localhost:3000/jobs/62f380f9e7a3049619de5cba
+### USER JOB APPLICATIONS - RESOURCE ENDPOINT
+GET http://localhost:3000/users/apply
+//passed: returns list of job applications (all) 
 
-###
-PUT http://localhost:3000/jobs/62f380f9e7a3049619de5cba
+### read single application
+GET http://localhost:3000/users/apply/:user_id
+//passed: responds job applications using user_id 
+
+### Creates Job Application
+POST http://localhost:3000/users/apply
 Content-Type: application/json
 
 {
-    "job_title": "Software Developer",
-    "job_description": "We are hiring developers ",
+    "job_id": "62f3813ae7a3049619de5cbd",
+    "user_id": "62f39b970fcd2246b6d1b13d"
+}
+// passed: create job application 
+// update & delate functionality is not required (ignored)
+
+
+
+
+### USER PORTFOLIOS - RESOURCE ENDPOINT
+GET http://localhost:3000/users/portfolio
+// passed: responds list of portfolio for all users 
+
+###
+Delete http://localhost:3000/users/portfolio/:user_id
+// passed: currenty deletes every portfolio associated with the user
+
+### Creates new Portfolio for User
+POST http://localhost:3000/users/portfolio
+Content-Type: application/json
+
+{
+    "user_id": "62f39b740fcd2246b6d1b13a",
+    "job_title": "Softwar Developer",
+    "company": "Microsoft Techno",
+    "date_started": "2013-04-30",
+    "date_ended": "2015-04-30",
+    "industry": "Technology",
+    "education": {
+        "highest_level": "Masters Degree",
+        "school_name": "Massachusets",
+        "date_completed": "2000-04-30"
+    },
+    "skills": ["Problem Solving", "Typescript"]
+}
+//passed: creates job portfolio (unique company)
+
+### Updates user Portfolio
+PUT http://localhost:3000/users/portfolio/:_id
+Content-Type: application/json
+
+{
+    "user_id": "62f39b740fcd2246b6d1b13a",
+    "job_title": "Softwar Developer",
+    "company": "SASER Technologies",
+    "date_started": "2013-04-30",
+    "date_ended": "2015-04-30",
+    "industry": "Technology",
+    "education": {
+        "highest_level": "Masters Degree",
+        "school_name": "Massachusets",
+        "date_completed": "2000-04-30"
+    },
+    "skills": ["Problem Solving", "Typescript"]
+}
+//passed: creates job portfolio (unique company)
+
+
+
+
+
+### JOB - RESOURCE ENDPOINT
+GET http://localhost:3000/jobs/
+// passed: returns all jobs
+
+### Delete Job
+DELETE http://localhost:3000/jobs/62f3e5c39a12d4f6edb777c8
+// passed: deletes job (using job id)
+
+### Update Job
+PUT http://localhost:3000/jobs/:_id
+Content-Type: application/json
+
+{
+    "job_title": "Mobile App Developer",
+    "job_description": "React Native ",
     "company": "website.et"
 }
-###
+// passed: updates Single Job
+
+### Create Job
 POST http://localhost:3000/jobs
 Content-Type: application/json
 
 {
-    "job_title": "Angular Developer",
+    "job_title": "Mobile Application Developer",
     "job_description": "We are hiring developers ",
-    "company": "Qintot Group"
+    "company": "Oracle Technologies"
 }
+// passed: creates Job
 
-### checking jwt middleware
+
+
+
+### MENU - RESOURCE ENDPOINT   :checking jwt middleware (dev only)
 GET http://localhost:3000/menu 
 authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YXNkZkBhc2RmLmNvbQ.mppZe0eoMzVV4lhjd6jx3b7x2PKgiBifLlYGbHmT2W4
+// passed: check for jwt verification 
 
-### get all registered users
 
+
+
+### AUTH - RESOURCE ENDPOINT
+### Getting all registered users & Admins
 GET http://localhost:3000/auth/users
+// passed: returns list of registers users / admins
 
 ### regiser user or admin if role is provided in request body
 POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {
-    "email": "bamlak@gmail.com",
-    "password": "adminadmin"
+    "email": "user@user.com",
+    "password": "asdfasdf"
 }
+// passed: registers user or admin( if role is provided)
 
-### 
-
+### Testing Login Auth
 POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "email": "admin@admin.com",
-    "password": "adminadmin",
+    "email": "user@user.com",
+    "password": "asdfasdf",
     "role": "ADMIN"
 }
+// passed: returns jwt token and logged in user or admin 

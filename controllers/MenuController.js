@@ -4,14 +4,10 @@ const Menu = require('../models/Menu');
 const _index = async (req, res, next) => {
     try {
         const response = await Menu.find()
-        res.json({
-            response
-        })
+        res.json(response)
     }
     catch (error) {
-        res.json({
-            error
-        })
+        res.json(error)
     }
 }
 
@@ -23,14 +19,10 @@ const _create = async (req, res, next) => {
 
     try {
         const response = await menu.save()
-        res.json({
-            response
-        })
+        res.json(response)
     }
     catch (error) {
-        res.json({
-            error
-        })
+        res.json(error)
     }
 }
 
@@ -39,14 +31,10 @@ const _read = async (req, res, next) => {
 
     try {
         const response = await Menu.findById(id)
-        res.json({
-            response
-        })
+        res.json(response)
     }
     catch (error) {
-        res.json({
-            error
-        })
+        res.json(error)
     }
 }
 
@@ -59,14 +47,10 @@ const _update = async (req, res, next) => {
 
     try {
         const response = await Menu.findByIdAndUpdate(id, { $set: updatedData })
-        res.json({
-            response
-        })
+        res.json(response)
     }
     catch (error) {
-        res.json({
-            error
-        })
+        res.json(error)
     }
 
 }
@@ -76,14 +60,10 @@ const _delete = async (req, res, next) => {
 
     try {
         const response = await Menu.findByIdAndDelete(id)
-        res.json({
-            response
-        })
+        res.json(response)
     }
     catch (error) {
-        res.json({
-            message: "Delete Failed"
-        })
+        res.json({ message: "Delete Failed" })
     }
 }
 

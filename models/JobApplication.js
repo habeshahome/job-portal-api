@@ -15,8 +15,10 @@ const JobApplicationSchema = new Schema(
             required: true
         }
     }, { timestamps: true })
+    .index({ job_id: 1, user_id: 1 }, {unique: true})
+    .set('autoIndex', false)
 
 //creating model
 const JobApplication = mongoose.model('JobApplication', JobApplicationSchema)
 
-module.exports = JobApplication 
+module.exports = JobApplication

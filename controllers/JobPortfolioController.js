@@ -4,14 +4,10 @@ const JobPortfolio = require('../models/JobPortfolio');
 const _index = async (req, res, next) => {
     try {
         const response = await JobPortfolio.find()
-        res.json({
-            response
-        })
+        res.json(response)
     }
     catch (error) {
-        res.json({
-            error
-        })
+        res.json(error)
     }
 }
 
@@ -30,9 +26,7 @@ const _create = async (req, res) => {
 
     try {
         const response = await job.save()
-        res.json({
-            response
-        })
+        res.json(response)
     }
     catch (error) {
         res.json({
@@ -46,14 +40,10 @@ const _read = async (req, res) => {
 
     try {
         const response = await JobPortfolio.find({ user_id: id })
-        res.json({
-            response
-        })
+        res.json(response)
     }
     catch (error) {
-        res.json({
-            error
-        })
+        res.json(error)
     }
 }
 
@@ -68,14 +58,10 @@ const _update = async (req, res, next) => {
 
     try {
         const response = await JobPortfolio.findByIdAndUpdate(id, { $set: updatedData })
-        res.json({
-            response
-        })
+        res.json(response)
     }
     catch (error) {
-        res.json({
-            error
-        })
+        res.json(error)
     }
 
 }
@@ -85,14 +71,10 @@ const _delete = async (req, res, next) => {
 
     try {
         const response = await JobPortfolio.deleteMany({ user_id: id })
-        res.json({
-            response
-        })
+        res.json(response)
     }
     catch (error) {
-        res.json({
-            message: "Delete Failed"
-        })
+        res.json({ message: "Delete Failed"})
     }
 }
 

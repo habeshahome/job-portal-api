@@ -15,6 +15,12 @@ const AuthSchema = new Schema(
             type: String,
             required: true
         },
+        name: {
+            type: String
+        },
+        mobile: {
+            type: String
+        },
         role: {
             type: String,
             default: 'USER'

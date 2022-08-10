@@ -1,9 +1,9 @@
 // importing the model
-const User = require('../models/Auth');
+const JobPortfolio = require('../models/JobPortfolio');
 
 const _index = async (req, res, next) => {
     try {
-        const response = await User.find({}, ['email name mobile role'])
+        const response = await JobPortfolio.find()
         res.json({
             response
         })
@@ -15,14 +15,21 @@ const _index = async (req, res, next) => {
     }
 }
 
-const _create = async (req, res, next) => {
+const _create = async (req, res) => {
 
-    let User = new User({
-        name: req.body.name
+    let job = new JobPortfolio({
+        user_id: req.body.user_id,
+        job_title: req.body.job_title,
+        company: req.body.company,
+        date_started: req.body.date_started,
+        date_ended: req.body.date_ended,
+        industry: req.body.industry,
+        education: req.body.education,
+        skills: req.body.skills
     })
 
     try {
-        const response = await User.save()
+        const response = await job.save()
         res.json({
             response
         })
@@ -34,11 +41,11 @@ const _create = async (req, res, next) => {
     }
 }
 
-const _read = async (req, res, next) => {
+const _read = async (req, res) => {
     let id = req.params.id
 
     try {
-        const response = await User.findById(id)
+        const response = await JobPortfolio.find({ user_id: id })
         res.json({
             response
         })
@@ -54,11 +61,13 @@ const _update = async (req, res, next) => {
     let id = req.params.id
 
     let updatedData = {
-        name: req.body.name
+        job_title: req.body.job_title,
+        job_description: req.body.job_description,
+        company: req.body.company
     }
 
     try {
-        const response = await User.findByIdAndUpdate(id, { $set: updatedData })
+        const response = await JobPortfolio.findByIdAndUpdate(id, { $set: updatedData })
         res.json({
             response
         })
@@ -75,7 +84,7 @@ const _delete = async (req, res, next) => {
     let id = req.params.id
 
     try {
-        const response = await User.findByIdAndDelete(id)
+        const response = await JobPortfolio.deleteMany({ user_id: id })
         res.json({
             response
         })

@@ -1,0 +1,51 @@
+GET http://localhost:3000/jobs/
+
+###
+DELETE http://localhost:3000/jobs/62f380f9e7a3049619de5cba
+
+###
+PUT http://localhost:3000/jobs/62f380f9e7a3049619de5cba
+Content-Type: application/json
+
+{
+    "job_title": "Software Developer",
+    "job_description": "We are hiring developers ",
+    "company": "website.et"
+}
+###
+POST http://localhost:3000/jobs
+Content-Type: application/json
+
+{
+    "job_title": "Angular Developer",
+    "job_description": "We are hiring developers ",
+    "company": "Qintot Group"
+}
+
+### checking jwt middleware
+GET http://localhost:3000/menu 
+authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YXNkZkBhc2RmLmNvbQ.mppZe0eoMzVV4lhjd6jx3b7x2PKgiBifLlYGbHmT2W4
+
+### get all registered users
+
+GET http://localhost:3000/auth/users
+
+### regiser user or admin if role is provided in request body
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+    "email": "bamlak@gmail.com",
+    "password": "adminadmin"
+}
+
+### 
+
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email": "admin@admin.com",
+    "password": "adminadmin",
+    "role": "ADMIN"
+}

@@ -98,9 +98,9 @@ POST http://localhost:3000/jobs
 Content-Type: application/json
 
 {
-    "job_title": "Mobile Application Developer",
-    "job_description": "We are hiring developers ",
-    "company": "Oracle Technologies"
+    "job_title": "DJ for Sleeping",
+    "job_description": "Are you a graphics designer, we're looking for yout.",
+    "company": "Skyloo Properties"
 }
 // passed: creates Job
 

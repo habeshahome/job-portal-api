@@ -22,34 +22,37 @@ const register = async (req, res) => {
         // jwt 
         const accessToken = await jwt.sign(auth.email, process.env.JWT_SECRET)
         // response sucess
-        res.json([{ accessToken: accessToken}, {user: auth }])
+        res.json([{ accessToken: accessToken }, { user: auth }])
     }
     catch (err) {
-        res.status(500).send([{ message: "Registration failed" }])
+        res.status(409).json([{ message: err }])
     }
 }
 
 const login = async (req, res, next) => {
-    // find user in db
-    const auth = await Auth.findOne({ email: req.body.email })
+    let auth
 
-    if (auth === null) {
-        res.status(400).send({ message: "User not found" })
-    }
     try {
-        // bcrypt.compare(newPassword, oldPassword)
-        if (await bcrypt.compare(req.body.password, auth.password)) {
-            // jwt 
-            const accessToken = await jwt.sign(auth.email, process.env.JWT_SECRET)
-            // response sucess
-            res.json([{ accessToken: accessToken}, {user: auth }])
+        // find user in db
+
+        auth = await Auth.findOne({ email: req.body.email })
+        if (auth == null) {
+            res.status(401).json({ message: "User not found" })
         } else {
-            res.json({ message: "User Authentication Failed" })
+            // bcrypt.compare(newPassword, oldPassword)
+            if (await bcrypt.compare(req.body.password, auth.password)) {
+                // jwt singing
+                const accessToken = await jwt.sign(auth.email, process.env.JWT_SECRET)
+                // response sucess
+                res.json([{ accessToken: accessToken }, { user: auth }])
+            } else {
+                res.status(401).json({ message: "User Authentication Failed" })
+            }
         }
     }
     catch (err) {
         console.log(auth)
-        res.status(500).send({ message: err.message })
+        res.send(400).json({ message: err })
     }
 }
 
@@ -57,10 +60,13 @@ const login = async (req, res, next) => {
 const index = async (req, res, next) => {
     try {
         const response = await Auth.find()
-        res.json(response)
+        if (response !== null || response.length() !== 0)
+            res.json(response)
+        else
+            res.status(401).json({ message: "No User in the Database" })
     }
     catch (err) {
-        res.json({ message: "no user found" })
+        res.status(400).json({ message: err })
     }
 }
 

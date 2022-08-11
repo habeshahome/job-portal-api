@@ -7,7 +7,7 @@ const _index = async (req, res, next) => {
         res.json(response)
     }
     catch (error) {
-        res.json(error)
+        res.status.json(error)
     }
 }
 
@@ -22,7 +22,7 @@ const _create = async (req, res, next) => {
         res.json(response)
     }
     catch (error) {
-        res.json(error)
+        res.status.json(error)
     }
 }
 
@@ -34,7 +34,7 @@ const _read = async (req, res, next) => {
         res.json(response)
     }
     catch (error) {
-        res.json(error)
+        res.status.json(error)
     }
 }
 
@@ -50,7 +50,7 @@ const _update = async (req, res, next) => {
         res.json(response)
     }
     catch (error) {
-        res.json(error)
+        res.status.json(error)
     }
 
 }
@@ -63,7 +63,7 @@ const _delete = async (req, res, next) => {
         res.json(response)
     }
     catch (error) {
-        res.json({ message: "Delete Failed" })
+        res.status.json({ message: "Delete Failed" })
     }
 }
 

@@ -4,11 +4,11 @@ const Job = require('../models/Job');
 
 const _index = async (req, res, next) => {
     try {
-        const response = await Job.find()
+        const response = await Job.find().sort('-createdAt')
         res.json(response)
     }
     catch (error) {
-        res.json(error)
+        res.status(404).json(error)
     }
 }
 
@@ -26,7 +26,7 @@ const _create = async (req, res, next) => {
         res.json(response)
     }
     catch (error) {
-        res.json(error)
+        res.status(404).json(error)
     }
 }
 
@@ -39,7 +39,7 @@ const _read = async (req, res, next) => {
         res.json(response)
     }
     catch (error) {
-        res.json(error)
+        res.status(404).json(error)
     }
 }
 
@@ -58,7 +58,7 @@ const _update = async (req, res, next) => {
         res.json(response)
     }
     catch (error) {
-        res.json(error)
+        res.status(404).json(error)
     }
 
 }
@@ -72,7 +72,7 @@ const _delete = async (req, res, next) => {
         res.json(response)
     }
     catch (error) {
-        res.json({ message: "Delete Failed" })
+        res.status(404).json({ message: "Delete Failed" })
     }
 }
 

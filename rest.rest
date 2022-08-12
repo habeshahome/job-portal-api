@@ -1,5 +1,9 @@
 ### LIST OF API RESOURCE ENDPOINTS - FOR TESTING ONLY
 
+### Search Jobs 
+GET http://localhost:3000/jobs/search/React
+
+
 ### USER JOB APPLICATIONS - RESOURCE ENDPOINT
 GET http://localhost:3000/users/apply
 //passed: returns list of job applications (all) 

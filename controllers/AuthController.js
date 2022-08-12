@@ -52,7 +52,7 @@ const login = async (req, res, next) => {
     }
     catch (err) {
         console.log(auth)
-        res.send(400).json({ message: err })
+        res.status(400).json({ message: err })
     }
 }
 

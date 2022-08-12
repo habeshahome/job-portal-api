@@ -77,4 +77,25 @@ const _delete = async (req, res, next) => {
 }
 
 
-module.exports = { _index, _create, _read, _update, _delete } 
+const _search = async (req, res) => {
+    let keyword = req.params.keyword
+    let pattern = keyword
+
+    console.log("pattern is :")
+    console.log(pattern)
+
+    try {
+        const response = await Job.find({ job_title: new RegExp(keyword, 'i') })
+        console.log(response.length )
+        if (response.length > 0)
+            res.json(response)
+        else 
+            res.status(404).json({ message: "Job Not Found"})
+
+    }
+    catch (error) {
+        res.status(404).json(error)
+    }
+}
+
+module.exports = { _index, _create, _read, _update, _delete, _search } 

@@ -9,6 +9,7 @@ router.post('/', Job._create)
 router.get('/:id', Job._read)
 router.put('/:id', Job._update)
 router.delete('/:id', Job._delete)
+router.get('/search/:keyword', Job._search)
 
 
 module.exports = router;
